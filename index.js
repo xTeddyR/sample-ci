@@ -2,6 +2,10 @@ var express = require('express');
 var api = express();
 var DEFAULT_PORT = 3000;
 
+api.get('/', function (req, res, next) {
+    res.send('Hello world');
+})
+
 api.get('/contacts', function (req, res, next) {
     res.send([]);
 });
@@ -11,9 +15,8 @@ api.get('/contacts/:name', function (req, res, next) {
 });
 
 api.post('/contacts/:name', function (req, res, next) {
-    if(req.params.name === 'exist'){
+    if(req.params.name === 'exist')
         return res.status(403).send();
-    }
     res.send();
 });
 

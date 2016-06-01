@@ -14,7 +14,7 @@ describe('contacts', function () {
         });
         
         it('should not be authorized to create a new contact with an already register name', function () {
-            return request(api).post('/contacts/foo').send().expect(403);
+            return request(api).post('/contacts/exist').send().expect(403);
         });
     });
     
