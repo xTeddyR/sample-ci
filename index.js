@@ -2,33 +2,11 @@ var express = require('express');
 var api = express();
 var DEFAULT_PORT = 3000;
 
+// configure static server
 api.use(express.static('public'));
 
-api.get('/api', function (req, res, next) {
-    res.send('Hello API');
-})
-
-api.get('/api/contacts', function (req, res, next) {
-    res.send([]);
-});
-
-api.get('/api/contacts/:name', function (req, res, next) {
-    res.send();
-});
-
-api.post('/api/contacts/:name', function (req, res, next) {
-    if(req.params.name === 'exist')
-        return res.status(403).send();
-    res.send();
-});
-
-api.put('/api/contacts/:name/:new', function (req, res, next) {
-    res.send();
-});
-
-api.delete('/api/contacts/:name', function (req, res, next) {
-    res.send();
-});
+require('./models')(api); // load models
+require('./methods')(api); // load methods
 
 var port = process.env.PORT || DEFAULT_PORT;
 console.log('Server started on port ' + port);
