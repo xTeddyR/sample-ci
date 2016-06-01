@@ -12,6 +12,10 @@ describe('contacts', function () {
         it('should create a new contact', function () {
             return request(api).post('/contacts/foo').send().expect(200);
         });
+        
+        it('should not be authorized to create a new contact with an already register name', function () {
+            return request(api).post('/contacts/foo').send().expect(403);
+        });
     });
     
     describe('PUT /contacts/:name/:new', function () {
